@@ -1,6 +1,10 @@
 "use strict";
 
-const player = prompt("Rock, Paper or Scissors").toLocaleLowerCase();
+//Player selection by buttons
+const rock = document.querySelector(".button1");
+const paper = document.querySelector(".button2");
+const scissors = document.querySelector(".button3");
+const resultContainer = document.querySelector(".result-container");
 
 //function for computer choice
 function getComputerChoice() {
@@ -13,11 +17,14 @@ function getComputerChoice() {
     return "scissors";
   }
 }
+
+//storing function return values
 const computerChoice = getComputerChoice();
 
 //function for game round
 function playRound(playerSelection, computerSelection) {
-  // console.log(playerSelection, computerSelection);
+  console.log(playerSelection, computerSelection);
+
   if (playerSelection == "rock" && computerSelection == "rock") {
     return `Draw, Player ${playerSelection} and Computer ${computerSelection}`;
   } else if (playerSelection == "rock" && computerSelection == "paper") {
@@ -38,5 +45,32 @@ function playRound(playerSelection, computerSelection) {
     return `Draw, Rock breaks scissors. Player ${playerSelection} and Computer ${computerSelection}`;
   }
 }
-const round = playRound(player, computerChoice);
-console.log(round);
+
+//Event liseteners
+rock.addEventListener("click", function () {
+  const playerChoice = "rock";
+  const computerChoice = getComputerChoice();
+  const result = playRound(playerChoice, computerChoice);
+  console.log(result);
+  displayResult(result);
+});
+
+paper.addEventListener("click", function () {
+  const playerChoice = "paper";
+  const computerChoice = getComputerChoice();
+  const result = playRound(playerChoice, computerChoice);
+  console.log(result);
+  displayResult(result);
+});
+
+scissors.addEventListener("click", function () {
+  const playerChoice = "scissors";
+  const computerChoice = getComputerChoice();
+  const result = playRound(playerChoice, computerChoice);
+  console.log(result);
+  displayResult(result);
+});
+
+function displayResult(result) {
+  resultContainer.textContent = result;
+}
